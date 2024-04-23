@@ -1,0 +1,7 @@
+[package]
+name = "report-tools"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Kitashimauni"]
+license = "MIT"
+description = "Functions for report"
