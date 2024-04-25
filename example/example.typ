@@ -1,4 +1,9 @@
-#import "../lib.typ": showCode
+#import "../lib.typ": showCode, mysetting
+
+// setの内容をモジュールに入れておくと楽
+#set text(..mysetting.at("text"))
+#set heading(..mysetting.at("heading"))
+// #set par(..mysetting.at("par"))
 
 // tips: コードブロック内の日本語のフォント指定方法
 // font: (日本語以外のフォント, 日本語のフォント) で指定
@@ -14,8 +19,8 @@
 普通に表示
 #Code("./main.py")
 
-関数指定で表示
-#Code("./main.py", func: "add")
+関数指定で表示(caption属性で説明を付けられる)
+#Code("./main.py", func: "add", caption: "add関数")
 
 #raw("差分を指定(初期値は(-1, 0)となっており端の空行は表示されない)")
 #Code("./main.py", func: "mul", diff: (-2, 1))
@@ -26,7 +31,7 @@
 クラス指定で表示
 #Code("./main.py", class: "counter")
 
-範囲指定で表示
+範囲指定で表示(showrangeの代わりにこちらも使用可)
 #Code("./main.py", range: (1, 2))
 
 == 特殊な指定
