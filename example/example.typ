@@ -1,4 +1,9 @@
-#import "../lib.typ": showCode
+#import "../lib.typ": showCode, mysetting
+
+// setの内容をモジュールに入れておくと楽
+#set text(..mysetting.at("text"))
+#set heading(..mysetting.at("heading"))
+// #set par(..mysetting.at("par"))
 
 // tips: コードブロック内の日本語のフォント指定方法
 // font: (日本語以外のフォント, 日本語のフォント) で指定

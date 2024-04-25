@@ -1,5 +1,26 @@
 #import "@preview/codelst:2.0.1": sourcefile
 
+// レポート用の設定
+#let mysetting = (
+  text: (
+    lang: "ja", 
+    font: ("Cambria", "MS Mincho")
+  ),
+  par: (
+    first-line-indent: 1em
+  ),
+  heading: (
+    numbering: (..args) => {
+      let nums = args.pos()
+      if nums.len() == 1 {
+        return numbering("1.", ..nums)
+      } else {
+        return numbering("1.1", ..nums)
+      }
+    },
+  )
+)
+
 // ソースファイルからコードを挿入する関数(関数指定, クラス指定は現在pythonのみ対応)
 #let showCode(
   code, 
