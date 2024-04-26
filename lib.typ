@@ -52,7 +52,7 @@
     let txt = code.split("\n")
     let start = 0; let end = 0; let index = none; let count = 0
     let funcName = regex(if(func!=none){("^\s*def ", func)}else{("^\s*class ", class)}.join())
-    if func == "__main__" {funcName = "if __name__ == "} // 特殊指定
+    if func == "__main__" {funcName = regex("if\s+__name__\s*==")} // 特殊指定
     let spaceNum(line) = line.find(regex("(^\s*)")).len()
     for l in txt {
       count += 1

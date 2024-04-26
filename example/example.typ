@@ -11,10 +11,11 @@
 
 // 以下使い方
 
-= showCode
-== 基本的な使い方
 // このような関数をあらかじめ定義すると便利
 #let Code(path, ..args) = { showCode(read(path), path, ..args) }
+
+= showCode
+== 基本的な使い方
 
 普通に表示
 #Code("./main.py")
@@ -31,7 +32,7 @@
 クラス指定で表示
 #Code("./main.py", class: "counter")
 
-範囲指定で表示(showrangeの代わりにこちらも使用可)
+範囲指定で表示(#raw("showrangeの代わりにこちらも使用可"))
 #Code("./main.py", range: (1, 2))
 
 == 特殊な指定
@@ -40,6 +41,7 @@
 #Code("./main.py", func: "__main__")
 
 == 注意点
+
 以下のようにインデントの合わないコメントがあるとそのコメント以下が表示されなくなるので注意
 
 #showCode(
