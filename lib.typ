@@ -52,7 +52,7 @@
     let txt = code.split("\n")
     let start = 0; let end = 0; let index = none; let count = 0
     let funcName = regex(if(func!=none){("^\s*def ", func)}else{("^\s*class ", class)}.join())
-    if func == "__main__" {funcName = "if __name__ == "} // 特殊指定
+    if func == "__main__" {funcName = regex("if\s+__name__\s*==")} // 特殊指定
     let spaceNum(line) = line.find(regex("(^\s*)")).len()
     for l in txt {
       count += 1
@@ -80,3 +80,67 @@
     #caption
   ]
 }
+
+// itembox的なもの(6ptから30pt程度を想定) いづれ改修するかも
+#let itembox(
+  caption: none,
+  space: 0pt,
+  caption_padding: 0pt,
+  stroke: black,
+  radius: 6pt,
+  inset: 8pt,
+  ..args,
+  body
+) = [
+  #block(
+    stroke: stroke,
+    inset: inset,
+    radius: radius,
+    ..args
+  )[
+    #context{
+      stack(
+        dir: ttb,
+        spacing: - 1em / 2 + space,
+        [
+          #let place = {
+              - (inset - 8pt) - 1em * 1.2 + {
+              if text.size <= 8.5pt {
+                - 0.2em - (8.5pt - text.size) / 1pt * 0.15em
+              } else if 8.5pt <= text.size and text.size < 10.5pt {
+                - 0.2em + 0.2em * ((text.size - 8.5pt) / 2pt)
+              } else if 10.5pt <= text.size and text.size < 15.5pt {
+                0.2em * ((text.size - 10.5pt) / 5pt)
+              } else if 15.5pt <= text.size and text.size < 20.5pt {
+                0.2em + 0.1em * ((text.size - 15.5pt) / 5pt)
+              } else {
+                0.3em + (text.size - 20.5pt) / 10pt * 0.15em
+              }
+            }
+          }
+          #move(
+            dx: 0pt,
+            dy: place,
+          )[
+            #block(
+              fill: color.linear-rgb(255, 255, 255, 255),
+              height: 1em,
+              inset: (
+                left: 3pt + caption_padding, 
+                right: 3pt + caption_padding, 
+                top: 0.15em, 
+                bottom: 0pt
+              ),
+              above: 0pt,
+              below: 0pt,
+              [#caption]
+            )
+          ]
+        ],
+        [
+          #body
+        ]
+      )
+    }
+  ]
+]
