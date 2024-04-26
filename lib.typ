@@ -1,15 +1,16 @@
 #import "@preview/codelst:2.0.1": sourcefile
 
-// レポート用の設定
-#let mysetting = (
-  text: (
-    lang: "ja", 
-    font: ("Cambria", "MS Mincho")
-  ),
-  par: (
-    first-line-indent: 1em
-  ),
-  heading: (
+// レポート用の個人用設定
+#let mysetting(doc) = [
+  // テキスト関連の設定 //
+  // デフォルト値
+  #set text(
+    lang: "ja",
+    font: ("Cambria", "MS Mincho"),
+    size: 10.5pt,
+  )
+  #set par(first-line-indent: 1em)
+  #set heading(
     numbering: (..args) => {
       let nums = args.pos()
       if nums.len() == 1 {
@@ -17,9 +18,23 @@
       } else {
         return numbering("1.1", ..nums)
       }
-    },
+    }
   )
-)
+  #show heading.where(level: 1): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 12pt)
+  #show heading.where(level: 2): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 11pt) 
+  #show heading: it => {
+    it
+    par(text(size: 0em, ""))
+  }
+  
+  // コードブロック用
+  #show raw: set text(lang: "ja", font: ("Consolas", "MS Mincho"), size: 10.5pt)
+
+  // 図表関連の設定 //
+  #show figure.where(kind: table): set figure.caption(position: top)
+  
+  #doc
+]
 
 // ソースファイルからコードを挿入する関数(関数指定, クラス指定は現在pythonのみ対応)
 #let showCode(
