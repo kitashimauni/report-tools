@@ -20,8 +20,8 @@
       }
     }
   )
-  #show heading.where(level: 1): set text(lang: "ja", font: ("Cambria", "MS Mincho"), size: 12pt)
-  #show heading.where(level: 2): set text(lang: "ja", font: ("Cambria", "MS Mincho"), size: 11pt) 
+  #show heading.where(level: 1): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 12pt)
+  #show heading.where(level: 2): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 11pt) 
   #show heading: it => {
     it
     par(text(size: 0em, ""))
