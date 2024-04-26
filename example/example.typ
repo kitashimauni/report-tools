@@ -1,13 +1,13 @@
 #import "../lib.typ": showCode, mysetting
 
-// setの内容をモジュールに入れておくと楽
-#set text(..mysetting.at("text"))
-#set heading(..mysetting.at("heading"))
-// #set par(..mysetting.at("par"))
+// 個人用設定の読み込み
+#show: mysetting
+// 設定の上書き
+#set par(first-line-indent: 0em)
 
 // tips: コードブロック内の日本語のフォント指定方法
 // font: (日本語以外のフォント, 日本語のフォント) で指定
-#show raw: set text(lang: "ja", font: ("Consolas", "MS Mincho"), size: 10.5pt)
+// #show raw: set text(lang: "ja", font: ("Consolas", "MS Mincho"), size: 10.5pt)
 
 // 以下使い方
 
