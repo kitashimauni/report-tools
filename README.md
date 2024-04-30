@@ -15,3 +15,8 @@
 
 #### 依存
 ```@preview/codelst:2.0.1```
+
+### ```itembox```
+LaTeXのアイテムボックス風のブロックを作る
+
+最低限引数にcaptionとbodyがあればよい
