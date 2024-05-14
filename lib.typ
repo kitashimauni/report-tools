@@ -10,6 +10,11 @@
   ]
 }
 
+// TODOを強調表示する関数
+#let todo(it) = {
+  text(lang: "ja", font: ("Century", "Meiryo"), fill: red)[*TODO:* *#it*]
+}
+ 
 // レポート用の個人用設定
 #let mysetting(doc) = [
   // テキスト関連の設定 //
@@ -50,6 +55,11 @@
   #let subheading_md = "-=-"
   #show regex("^" + subheading_md + " (.*)$"): it => {
     subheading(str(it.text).slice(subheading_md.len()+1))
+  }
+  // TODO強調
+  #let todo_md = "TODO"
+  #show regex(todo_md + " \S*"): it => {
+    todo(str(it.text).slice(todo_md.len()+1))
   }
 
   #doc
