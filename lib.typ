@@ -57,9 +57,9 @@
     subheading(str(it.text).slice(subheading_md.len()+1))
   }
   // TODO強調
-  #let todo_md = "TODO"
+  #let todo_md = "(TODO|todo)"
   #show regex(todo_md + " \S*"): it => {
-    todo(str(it.text).slice(todo_md.len()+1))
+    todo(str(it.text).slice(4+1))
   }
 
   #doc
