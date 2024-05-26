@@ -24,7 +24,10 @@
     font: ("Century", "MS Mincho"),
     size: 10.5pt,
   )
-  #set par(first-line-indent: 1em)
+  #set par(
+    first-line-indent: 1em,
+    justify: true,
+  )
   #set heading(
     numbering: (..args) => {
       let nums = args.pos()
