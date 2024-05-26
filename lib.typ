@@ -1,15 +1,33 @@
 #import "@preview/codelst:2.0.1": sourcefile
 
+// label関数の短縮形
+#let l(arg) = { label(arg) }
+
+// 小見出しを表示する関数
+#let subheading(it) = {
+  par(first-line-indent: 0em)[
+    #text(font: "Meiryo", size: 11pt)[*#it*]
+  ]
+}
+
+// TODOを強調表示する関数
+#let todo(it) = {
+  text(lang: "ja", font: ("Century", "Meiryo"), fill: red)[*TODO:* *#it*]
+}
+ 
 // レポート用の個人用設定
 #let mysetting(doc) = [
   // テキスト関連の設定 //
   // デフォルト値
   #set text(
     lang: "ja",
-    font: ("Cambria", "MS Mincho"),
+    font: ("Century", "MS Mincho"),
     size: 10.5pt,
   )
-  #set par(first-line-indent: 1em)
+  #set par(
+    first-line-indent: 1em,
+    justify: true,
+  )
   #set heading(
     numbering: (..args) => {
       let nums = args.pos()
@@ -20,8 +38,9 @@
       }
     }
   )
-  #show heading.where(level: 1): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 12pt)
-  #show heading.where(level: 2): set text(lang: "ja", font: ("Cambria", "MS Gothic"), size: 11pt) 
+  #show heading.where(level: 1): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 12pt)
+  #show heading.where(level: 2): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 11pt)
+  #show heading.where(level: 3): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 11pt) 
   #show heading: it => {
     it
     par(text(size: 0em, ""))
@@ -32,7 +51,20 @@
 
   // 図表関連の設定 //
   #show figure.where(kind: table): set figure.caption(position: top)
-  
+  #set grid(column-gutter: 10pt, row-gutter: 10pt)
+
+  // 便利系 //
+  // 小見出し
+  #let subheading_md = "-=-"
+  #show regex("^" + subheading_md + " (.*)$"): it => {
+    subheading(str(it.text).slice(subheading_md.len()+1))
+  }
+  // TODO強調
+  #let todo_md = "(TODO|todo)"
+  #show regex(todo_md + " \S*"): it => {
+    todo(str(it.text).slice(4+1))
+  }
+
   #doc
 ]
 
