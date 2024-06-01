@@ -53,6 +53,22 @@
   #show figure.where(kind: table): set figure.caption(position: top)
   #set grid(column-gutter: 10pt, row-gutter: 10pt)
 
+  // 参照の設定
+  #show ref: it => {
+    let eq = heading
+    let el = it.element
+    if el != none and el.func() == eq {
+      // Override equation references.
+      let numbers = ("章", "節", "項")
+      let target = counter(eq).at(el.location())
+      let target_str = target.map(str)
+      text[#target_str.join(".")#numbers.at(target.len() - 1)]
+    } else {
+      // Other references as usual.
+      it
+    }
+  }
+
   // 便利系 //
   // 小見出し
   #let subheading_md = "-=-"
