@@ -14,7 +14,13 @@
 #let todo(it) = {
   text(lang: "ja", font: ("Century", "Meiryo"), fill: red)[*TODO:* *#it*]
 }
- 
+
+// spaceをn個入れる関数
+#let spaces(n) = {$space$*n}
+#let space2 = spaces(2)
+#let space3 = spaces(3)
+#let space4 = spaces(4)
+
 // レポート用の個人用設定
 #let mysetting(doc) = [
   // テキスト関連の設定 //
