@@ -4,9 +4,9 @@
 #let l(arg) = { label(arg) }
 
 // 小見出しを表示する関数
-#let subheading(it) = {
+#let subheading(it, size: 11pt) = {
   par(first-line-indent: 0em)[
-    #text(font: "Meiryo", size: 11pt)[*#it*]
+    #text(font: "Meiryo", size: size)[*#it*]
   ]
 }
 
