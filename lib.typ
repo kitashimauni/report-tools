@@ -198,3 +198,7 @@
     }
   ]
 ]
+
+#let cmd(cmd) = {
+  box(raw(cmd), stroke: 0.5pt, inset: 0.5pt, outset: 2.5pt, radius: 4pt, fill: rgb(230, 230, 230))
+}
