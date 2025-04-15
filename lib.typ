@@ -1,4 +1,4 @@
-#import "@preview/codelst:2.0.1": sourcefile
+#import "@preview/codelst:2.0.2": sourcefile
 
 // label関数の短縮形
 #let l(arg) = { label(arg) }
@@ -12,7 +12,7 @@
 
 // TODOを強調表示する関数
 #let todo(it) = {
-  text(lang: "ja", font: ("Century", "Meiryo"), fill: red)[*TODO:* *#it*]
+  text(lang: "ja", font: ("New Computer Modern Math", "Meiryo"), fill: red)[*TODO:* *#it*]
 }
 
 // spaceをn個入れる関数
@@ -27,7 +27,7 @@
   // デフォルト値
   #set text(
     lang: "ja",
-    font: ("Century", "MS Mincho"),
+    font: ("New Computer Modern Math", "Harano Aji Mincho"),
     size: 10.5pt,
   )
   #set par(
@@ -44,16 +44,16 @@
       }
     }
   )
-  #show heading.where(level: 1): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 12pt)
-  #show heading.where(level: 2): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 11pt)
-  #show heading.where(level: 3): set text(lang: "ja", font: ("Century", "MS Gothic"), size: 11pt) 
+  #show heading.where(level: 1): set text(lang: "ja", font: ("New Computer Modern Math", "Harano Aji Gothic"), size: 12pt)
+  #show heading.where(level: 2): set text(lang: "ja", font: ("New Computer Modern Math", "Harano Aji Gothic"), size: 11pt)
+  #show heading.where(level: 3): set text(lang: "ja", font: ("New Computer Modern Math", "Harano Aji Gothic"), size: 11pt) 
   #show heading: it => {
     it
     par(text(size: 0em, ""))
   }
   
   // コードブロック用
-  #show raw: set text(lang: "ja", font: ("Consolas", "MS Mincho"), size: 10.5pt)
+  #show raw: set text(lang: "ja", font: ("Consolas", "Harano Aji Mincho"), size: 10.5pt)
 
   // 図表関連の設定 //
   #show figure.where(kind: table): set figure.caption(position: top)
